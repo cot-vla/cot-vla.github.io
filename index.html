@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models">
+  <meta name="keywords" content="Robotics, VLA, VLM, MLLM">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+</head>
+
+
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-three-fifths is-centered has-text-centered">
+          <h1 class="title is-2 publication-title">CoT-VLA</h1>
+          <h2 class="subtitle is-4 publication-subtitle">Visual Chain-of-Thought Reasoning for <br> Vision-Language-Action Models</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://qingqing-zhao.github.io/" target="_blank">Qingqing Zhao</a>&nbsp;&nbsp;
+              <a href="https://research.nvidia.com/person/yao-lu-jason" target="_blank">Yao Lu</a>&nbsp;&nbsp;
+              <a href="https://moojink.com/" target="_blank">Moo Jin Kim</a>&nbsp;&nbsp;
+              <a href="https://zipengfu.github.io/" target="_blank">Zipeng Fu</a>&nbsp;&nbsp;
+              <a href="https://hanlab.mit.edu/team/zhuoyang-zhang" target="_blank">Zhuoyang Zhang</a>&nbsp;&nbsp;
+              <a href="https://openreview.net/profile?id=~Yecheng_Wu1" target="_blank">Yecheng Wu</a>&nbsp;&nbsp; 
+              <a href="https://mli0603.github.io/" target="_blank">Max Li</a>&nbsp;&nbsp;
+              <a href="https://qianlim.github.io/" target="_blank">Qianli Ma</a>&nbsp;&nbsp;
+              <a href="https://hanlab.mit.edu/songhan" target="_blank">Song Han</a>&nbsp;&nbsp;
+              <a href="https://ai.stanford.edu/~cbfinn/" target="_blank">Chelsea Finn</a>&nbsp;&nbsp;
+              <a href="https://ankurhanda.github.io/" target="_blank">Ankur Handa</a>&nbsp;&nbsp;
+              <a href="https://xiangdonglai.github.io/" target="_blank">Donglai Xiang</a>&nbsp;&nbsp;
+              <a href="https://mingyuliu.net/" target="_blank">Ming-Yu Liu</a>&nbsp;&nbsp;
+              <a href="https://stanford.edu/~gordonwz/" target="_blank">Gordon Wetzstein</a>&nbsp;&nbsp;
+              <a href="https://tsungyilin.info/" target="_blank">Tsung-Yi Lin</a>&nbsp;&nbsp;
+            </span>
+          </div>
+          <div>
+          </div>
+        </div>
+      </div>
+</section>
+<!-- 
+<section class="section">
+  <div class="container">
+    <h2 class="title is-3" style="text-align: center;">Autonomous Skills</h2>
+    <div class="columns is-centered">
+      <div class="column is-three-fifths is-centered has-text-centered">
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/6r4ZxpJjdx8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-three-fifths is-centered has-text-centered">
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/FPiyv7CIV6I" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-two-fifths is-centered has-text-centered">
+        <video controls autoplay loop muted playsinline src="./resources/autonomous/autonomous_folding_cloth.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+      </div>
+      <div class="column is-two-fifths is-centered has-text-centered">
+        <video controls autoplay loop muted playsinline src="./resources/autonomous/autonomous_high_jump.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-two-fifths is-centered has-text-centered">
+        <video controls autoplay loop muted playsinline src="./resources/autonomous/autonomous_warehouse.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+      </div>
+      <div class="column is-two-fifths is-centered has-text-centered">
+        <video controls autoplay loop muted playsinline src="./resources/autonomous/autonomous_warehouse_ood.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-two-fifths is-centered has-text-centered">
+        <video controls autoplay loop muted playsinline src="./resources/autonomous/autonomous_type_ai.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+      </div>
+      <div class="column is-two-fifths is-centered has-text-centered">
+        <video controls autoplay loop muted playsinline src="./resources/autonomous/autonomous_two_robot_greeting.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-two-fifths is-centered has-text-centered">
+        <video controls autoplay loop muted playsinline src="./resources/autonomous/autonomous_rearrange_objects.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+      </div>
+      <div class="column is-two-fifths is-centered has-text-centered">
+        <video controls autoplay loop muted playsinline src="./resources/autonomous/autonomous_rearrange_objects_robustness.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+      </div>
+    </div>
+  </div>
+</section>
+
+ -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <video id="teaser" autoplay controls muted loop playsinline height="80%">
+            <source src="media/cot_vla_video.m4v" type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered is-6">
+            We use the subgoal image generation as a form of visual chain-of-thought reasoning for Visual-Language-Action models.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-4">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Vision-language-action models (VLAs) have shown potential in leveraging pre-trained vision-language models and diverse robot demonstrations for learning generalizable sensorimotor control. While this paradigm effectively utilizes large-scale data from both robotic and non-robotic sources, current VLAs primarily focus on direct input-output mappings, lacking the intermediate reasoning steps crucial for complex manipulation tasks. As a result, existing VLAs lack temporal planning or reasoning capability. In this paper, we introduce a method that incorporates explicit visual chain-of-thought (CoT) reasoning into vision-language-action models (VLAs) by predicting future image frames auto-regressively as visual goals before generating a short action sequence to achieve these goals. We introduce CoT-VLA, a state-of-the-art 7B VLA that can understand and generate visual and action tokens. We demonstrates that CoT-VLA achieves strong performance in manipulation tasks in both the real world and simulation benchmarks. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-4">Approach</h2>
+        <div class="content has-text-justified has-text-centered">
+          <img src="media/cot_vla_pipeline.png" alt="CoT-VLA Pipeline" style="width: 100%;">
+          <p>
+            We build our model on pre-trained VILA-U, a generative multi-modal model pre-trained on interleaved text--image data. The base model then trains on robot demonstrations and action-less videos. During deployment, given a visual observation and a text instruction, the model performs visual chain-of-thought reasoning by generating a subgoal image (upper blue) with causal attention. It then generates a short action sequences with full-attention for robot execution. The system operates in a closed-loop control manner by capturing new observations after executing predicted action sequences.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-4">Experiments</h2>
+          <p>
+            Side-by-side visualization: Robot execution (green-bordered frames, left) with corresponding generated subgoal images (yellow-bordered frames, right) for each task.<br>
+            <br>
+          </p>
+
+          <div class="box has-background-light">
+            <h3 class="title is-5">Franka-Tabletop Benchmark</h3>
+            <p>Multi-Instruction Tasks</p>
+            <div class="columns is-centered">
+              <div class="column has-text-centered">
+                <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                  <source src="media/troid_side_by_side/tdroid_cover_object_0_cover_white_bowl_with_towel_side_by_side.mp4" type="video/mp4">
+                </video>
+                <p>"cover white bowl with towel"</p>
+              </div>
+              <div class="column has-text-centered">
+                <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                  <source src="media/troid_side_by_side/tdroid_knock_object_10_knock_green_dinosaur_over_side_by_side.mp4" type="video/mp4">
+                </video>
+                <p>"move yellow corn onto plate"</p>
+              </div>
+              <div class="column has-text-centered">
+                <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                  <source src="media/troid_side_by_side/tdroid_move_object_4_move_white_towel_onto_plate_side_by_side.mp4" type="video/mp4">
+                </video>
+                <p>"knock green dinosaur over"</p>
+              </div>
+            </div>
+            <p>Single-Instruction Tasks</p>
+            <div class="columns is-centered">
+              <div class="column has-text-centered">
+                <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                  <source src="media/troid_side_by_side/tdroid_put_carrot_in_bowl_retry_side_by_side.mp4" type="video/mp4">
+                </video>
+                <p>"put carrot in bowl"</p>
+              </div>
+              <div class="column has-text-centered">
+                <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                  <source src="media/troid_side_by_side/tdroid_flip_pot_upright2_side_by_side.mp4" type="video/mp4">
+                </video>
+                <p>"flip pot upright"</p>
+              </div>
+              <div class="column has-text-centered">
+                <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                  <source src="media/troid_side_by_side/tdroid_pour_corn_in_pot_5_side_by_side.mp4" type="video/mp4">
+                </video>
+                <p>"move yellow corn onto plate"</p>
+              </div>
+            </div>
+            <div class="columns is-centered">
+              <div class="columns is-centered has-text-centered">
+                <div class="column is-five-fifths">
+                  <img src="media/franka_bar_chat.png" alt="Franka benchmark results">
+                  <div class="content has-text-justified">
+                  <p>
+                    <strong>Franka-Tabletop experment comparison.</strong> Evaluation across six distinct manipulation tasks, with separate models trained per task. Left: Representative initial states for each task setup. Right: Task-specific success rates and cross-task averages for our method and baselines. CoT-VLA achieves best average performance and demonstrates strong capabilities in both single-instruction and multi-instruction scenarios.
+                  </p>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="box has-background-light">
+          <h3 class="title is-5">LIBERO Benchmark</h3>
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                <source src="media/libero/video_concat_10_video_1.mp4#t=-10" type="video/mp4">
+              </video>
+            </div>
+            <div class="column has-text-centered">
+              <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                <source src="media/libero/video_concat_10_video_2.mp4#t=-10" type="video/mp4">
+              </video>
+            </div>
+            <div class="column has-text-centered">
+              <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                <source src="media/libero/video_concat_10_video_3.mp4#t=-10" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                <source src="media/libero/video_concat_10_video_4.mp4#t=-10" type="video/mp4">
+              </video>
+            </div>
+            <div class="column has-text-centered">
+              <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                <source src="media/libero/video_concat_10_video_5.mp4#t=-10" type="video/mp4">
+              </video>
+            </div>
+            <div class="column has-text-centered">
+              <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                <source src="media/libero/video_concat_10_video_6.mp4#t=-10" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="columns is-centered has-text-centered">
+              <div class="column is-four-fifths">
+                <img src="media/libero_table.png" alt="LIBERO benchmark table">
+                <div class="content has-text-justified">
+                <p>
+                  <strong>LIBERO benchmark comparison.</strong> For each task suite (Spatial, Object, Goal, Long), we report the average success rate and standard deviation across 3 trials over 500 testing initial states. Our method achieves the best or competitive performance across all LIBERO benchmarks suites compared to baseline approaches.
+                </p>
+              </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+          <div class="box has-background-light">
+            <h3 class="title is-5">Bridge V2</h3>
+            <div class="columns is-centered">
+              <div class="column has-text-centered">
+                <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                  <source src="media/bridge/bridge_eggplant_in_pot_0.mp4#t=-10" type="video/mp4">
+                </video>
+                <p>"Put the eggplant in the pot" (visual)</p>
+              </div>
+              <div class="column has-text-centered">
+                <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                  <source src="media/bridge/bridge_put_carrot_on_plate.mp4#t=-10" type="video/mp4">
+                </video>
+                <p>"Put the carrot on the plate" (motion)</p>
+              </div>
+              <div class="column has-text-centered">
+                <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                  <source src="media/bridge/bridge_put_red_bottle_into_pot.mp4#t=-10" type="video/mp4">
+                </video>
+                <p>"Put the red bottle into the pot" (language)</p>
+              </div>
+              <div class="column has-text-centered">
+                <video autoplay controls muted loop playsinline height="100%" preload="auto">
+                  <source src="media/bridge/bridge_take_purple_grapes_out_of_pot_7.mp4#t=-10" type="video/mp4">
+                </video>
+                <p>"Take the purple grapes out of the pot" (semantic)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="box has-background-light">
+            <h3 class="title is-5">Ablation Studies</h3>
+            <div class="columns is-centered is-vcentered">
+              <div class="column is-two-fifths">
+                <img src="media/ablation.png" alt="Ablation study results">
+              </div>
+              <div class="column is-half">
+                <p>
+                  a) Results on LIBERO-Spatial and LIBERO-Goal benchmarks demonstrate the effectiveness of three components: action chunking (w/ chunking), full-attention action decoding (w/ full-attention), and visual chain-of-thought reasoning (ours). <br><br>
+                  b) Pre-training ablation experiments on Franka-Tabletop show performance improvements from the first-stage pre-training process.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</body>
+</html>
